@@ -1,0 +1,22 @@
+-- data_cadrasto TIMESTAMP default current_timestamp
+TIMESTAMP = no momento que click
+default = Define
+current_timestamp = hora do dia 
+
+Ex: data_cadrasto criadada no momento que click definida na hora do dia
+
+numeric(10,2) 
+numeric = numero decimal 
+(10,2) = numero 10/antes da virgula e 2/ depois da virgula
+
+check = basicamente if, checa antes de executar
+
+default  = vc seleciona o que vai estar de padrão para a seu id/variavel/tabela, tanto faz
+
+--constraint  = é uma função basicamente, vc coloca um id em uma tabela ja criada em mesmo quando ele ja esta em outra
+--foreign key()  = voce bota o id que vc quiser linkar a uma tabela 
+--references()  = a tabela que vc vai linkar o id
+
+
+on delete restrict  = se eu apagar um produto ele apaga apenas o produto, não a categoria
+on delete cascade  = se eu apagar 1 apaga tudo linkado a ele
