@@ -11,7 +11,7 @@ numeric = numero decimal
 
 check = basicamente if, checa antes de executar
 
-default  = vc seleciona o que vai estar de padrão para a seu id/variavel/tabela, tanto faz
+default  = vc seleciona o que vai estar de padrão para a seu id/variavel/tabela
 
 --constraint  = é uma função basicamente, vc coloca um id em uma tabela ja criada em mesmo quando ele ja esta em outra
 --foreign key()  = voce bota o id que vc quiser linkar a uma tabela 
