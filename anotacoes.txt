@@ -20,3 +20,6 @@ default  = vc seleciona o que vai estar de padrão para a seu id/variavel/tabela
 
 on delete restrict  = se eu apagar um produto ele apaga apenas o produto, não a categoria
 on delete cascade  = se eu apagar 1 apaga tudo linkado a ele
+
+teste.id = chave estrangeira
+teste_id = chave primaria
