@@ -108,3 +108,18 @@ select
 	from produtos p
 	join categorias c on c.id = p.categorias_id
 	order by p.preco desc;
+
+select
+pedidos.id,
+clientes.nome,
+SUM(item.quantidade * item.preco_unitario) as valor_total_pedido
+
+from
+pedidos
+join
+clientes on pedidos.clientes_id = clientes.id
+join
+itens_pedido item on pedidos.id = item.pedidos_id
+
+group by pedidos.id, clientes.nome
+order by pedidos.id;
