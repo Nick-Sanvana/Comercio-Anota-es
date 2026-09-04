@@ -194,6 +194,12 @@ insert into especialidades (nome) VALUES
 ('Pediatria'),
 ('Dermatologia')
 
+insert into medicos (especialidade_id, nome, crm, valor_consulta) VALUES 
+(1,'Fernando','12345','1')
+(3,'Ronaldo','12245','35')
+(2,'Juliano','12225','59')
+
+
 insert into pacientes (nome, email, cpf, data_nascimento) VALUES 
 ('Marcus', 'marcus@gmail.com','11122233344',05112008),
 ('Priscila', 'Priscila@gmail.com','55566633344',01091967),
