@@ -123,3 +123,78 @@ itens_pedido item on pedidos.id = item.pedidos_id
 
 group by pedidos.id, clientes.nome
 order by pedidos.id;
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+CREATE TABLE pacientes(
+id serial PRIMARY key,
+nome VARCHAR(150) NOT NULL,
+email VARCHAR(150) not null,
+cpf VARCHAR(11) UNIQUE not null,
+data_nascimento varchar(8) not null,
+data_cadrasto TIMESTAMP default current_timestamp
+
+)
+
+CREATE TABLE especialidades(
+id serial PRIMARY key,
+nome VARCHAR(150) NOT NULL
+
+)
+
+CREATE TABLE medicos(
+id serial PRIMARY key,
+especialidade_id int NOT NULL,
+nome VARCHAR(150) not null,
+crm VARCHAR(150) not null,
+valor_consulta NUMERIC(10,2) not null check (valor_consulta > 0),
+
+constraint fk_especialidade_id
+foreign key (especialidade_id)
+references especialidades(id)
+on delete cascade
+
+)
+
+CREATE TABLE consultas(
+id serial PRIMARY key,
+medico_id int NOT NULL,
+paciente_id int NOT NULL,
+data_hora TIMESTAMP default current_timestamp,
+status VARCHAR(20) default 'AGENDADA' CHECK (Status in ('AGENDADA','REALIZADA','CANCELADA')),
+
+CONSTRAINT fk_medico_id
+FOREIGN key (medico_id)
+REFERENCES medicos(id)
+on delete cascade,
+
+constraint fk_paciente_id
+FOREIGN key (paciente_id)
+REFERENCES pacientes(id)
+on delete restrict
+
+)
+
+CREATE TABLE exames_consulta (
+id serial PRIMARY key,
+consulta_id int NOT NULL,
+nome_exame varchar(150) NOT NULL,
+valor_exame NUMERIC(10,2) not null check (valor_exame >= 0),
+
+constraint fk_consulta_id 	
+FOREIGN key (consulta_id)
+REFERENCES consultas(id)
+on delete restrict
+
+)
+
+insert into especialidades (nome) VALUES 
+('Cardiologia'),
+('Pediatria'),
+('Dermatologia')
+
+insert into pacientes (nome, email, cpf, data_nascimento) VALUES 
+('Marcus', 'marcus@gmail.com','11122233344',05112008),
+('Priscila', 'Priscila@gmail.com','55566633344',01091967),
+('Sandra', 'sandra@gmail.com','44422277742',03051942)
