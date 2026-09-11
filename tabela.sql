@@ -204,3 +204,56 @@ insert into pacientes (nome, email, cpf, data_nascimento) VALUES
 ('Marcus', 'marcus@gmail.com','11122233344',05112008),
 ('Priscila', 'Priscila@gmail.com','55566633344',01091967),
 ('Sandra', 'sandra@gmail.com','44422277742',03051942)
+
+-----------------------------------------------------------------------------------------------------------
+
+create table clientes(
+id serial primary key,
+nome varchar(150) not null,
+email varchar(100) unique not null,
+telefone varchar(14) not null,
+cpf varchar(11) unique not null,
+data_cadrasto TIMESTAMP default current_timestamp
+)
+
+create table mecanicos(
+id serial primary key,
+nome varchar(150) not null,
+especialidade varchar(30) not null,
+valor_hora NUMERIC(10,2) not null check (valor_hora > 0)
+)
+
+create table veiculos(
+id serial PRIMARY key,
+cliente_id int NOT NULL,
+placa VARCHAR(7) unique not null,
+modelo VARCHAR(150) not null,
+marca VARCHAR(150) not null,
+ano int not null,
+
+constraint fk_cliente_id
+foreign key (cliente_id)
+references clientes(id)
+on delete cascade
+
+)
+
+create table ordens_servico(
+id serial PRIMARY key,
+veiculo_id int NOT NULL,
+mecanico_id int NOT NULL,
+modelo VARCHAR(150) not null,
+data_abertura TIMESTAMP default current_timestamp,
+valor_mao_obra NUMERIC(10,2) not null check (valor_mao_obra >= 0),
+status VARCHAR(20) default 'Em Aberto' CHECK (Status in ('Em Aberto','Em Andamento','Concluida','Cancelada')),
+
+CONSTRAINT fk_veiculos_id
+FOREIGN key (veiculo_id)
+REFERENCES veiculos(id)
+on delete cascade,
+
+constraint fk_mecanicos_id
+FOREIGN key (mecanico_id)
+REFERENCES mecanicos(id)
+on delete restrict
+)
