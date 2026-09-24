@@ -126,6 +126,7 @@ order by pedidos.id;
 
 
 --------------------------------------------------------------------------------------------------------------------
+--MedCare--
 
 CREATE TABLE pacientes(
 id serial PRIMARY key,
@@ -205,7 +206,20 @@ insert into pacientes (nome, email, cpf, data_nascimento) VALUES
 ('Priscila', 'Priscila@gmail.com','55566633344',01091967),
 ('Sandra', 'sandra@gmail.com','44422277742',03051942)
 
+create view vw_medico_c as
+
+Select 
+ m.nome as medico,
+ m.crm,
+ e.nome as especialidade,
+ m.valor_consulta
+From medicos m
+Join especialidades e on m.especialidade_id = e.id
+order by m.valor_consulta Desc;
+
 -----------------------------------------------------------------------------------------------------------
+--Autofix--
+
 
 create table clientes(
 id serial primary key,
